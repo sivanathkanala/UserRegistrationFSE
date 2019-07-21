@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Update user</title>
+
+<script type="text/javascript">
+    function reloadCaptcha(){
+    	location.reload();
+    }
+</script>
+
+</head>
+<body>
+	<form th:action="@{/logout}" method="get">
+		<button name="registration" type="Submit">Logout</button>
+	</form>
+	<form autocomplete="off" action="#" th:action="@{/admin/update}" th:object="${user}" method="post" role="form">
+
+		<h2>Update Account details</h2>
+
+		<table>
+			<tr>
+				<td>Email :</td>
+				<td>
+					<input type="hidden" th:text="*{email}" th:field="*{email}">
+					<input type="hidden" th:field="*{id}">
+				</td>
+			</tr>
+			<tr>
+				<td>Password :</td>
+				<td><input type="password" th:field="*{password}" placeholder="Password"/> 
+					<label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></label>
+				</td>
+			</tr>
+			<tr>
+				<td>First Name :</td>
+				<td><input type="text" th:field="*{name}" placeholder="First Name" />
+					<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></label></td>
+			</tr>
+			<tr>
+				<td>Last name :</td>
+				<td><input type="text" th:field="*{lastName}" placeholder="Last name" />
+					<label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></label>
+				<td>
+			</tr>
+			<tr>
+				<td><div id="captcha_id">
+					<img src="/captcha" alt="reload"width="120" height="40"/>
+					</div></td>
+				<td>
+                	<a href="#" onclick="reloadCaptcha()"><img src="../images/refresh.png" /></a>
+                	<input type="text" name="captcha" placeholder="Captcha" />
+                	<label th:if="${#fields.hasErrors('captcha')}" th:errors="*{captcha}"></label>
+                </td>
+			</tr>
+			<tr>
+				<td colspan="2"><button type="submit">Update</button></td>
+			</tr>
+		</table>
+	</form>
+	<form th:action="@{/admin/home}">
+		<table>
+			<tr>
+				<td>
+					<button type="submit">Cancel</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

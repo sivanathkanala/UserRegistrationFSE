@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Spring Security Tutorial</title>
+
+<script type="text/javascript">
+    function reloadCaptcha(){
+    	location.reload();
+    }
+</script>
+<style> 
+#back{
+  border: 1px dotted;
+  padding: 10px;
+  box-shadow: 5px 10px #888895;
+}
+</style>
+
+</head>
+
+<body>
+	<form th:action="@{/login}" method="post" th:object="${user}">
+		<table id="back">
+			<tr>
+				<td colspan="2">
+					<h4 th:text="Welcome"></h4>
+					<div>
+					</div>
+					<div align="left" th:if="${param.error}">
+						<p style="font-size: 20; color: #FF1C19;">Email or Password invalid or Captcha, please verify</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>Email id :</td>
+				
+				<td><input type="text" id="email" th:field="*{email}" th:placeholder="Email" /> <br /></td>
+			</tr>
+			<tr>
+				<td>Password :</td>
+				<td><input type="password" id="password" th:field="*{password}" th:placeholder="Password"/> <br /></td>
+			</tr>
+			<tr>
+				<td><div id="captcha_id">
+					<img src="/captcha" alt="reload"width="120" height="40"/>
+					</div></td>
+				<td>
+                	<a href="#" onclick="reloadCaptcha()"><img src="../images/refresh.png" /></a>
+                	<input type="text" name="captcha" placeholder="Captcha" />
+                </td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<button name="Submit" value="Login" type="Submit" th:text="Login"></button>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<br />
+	<a th:href="@{/registration}">User Register</a>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Admin Page</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+</head>
+
+<body>
+	<div>
+
+		<form th:action="@{/logout}" method="get">
+			<button name="registration" type="Submit">Logout</button>
+		</form>
+
+		<table>
+			<tr>
+				<td colspan="2">
+					<h2>
+						Superadmin access role.
+					</h2>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
